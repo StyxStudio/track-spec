@@ -42,6 +42,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SpaceCreateRequest'
+      tags:
+        - spaces
   '/spaces/{space}':
     parameters:
       - schema:
@@ -67,12 +69,16 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - spaces
     patch:
       summary: Update a space
       operationId: patch-spaces-space
       responses:
         '200':
           description: OK
+      tags:
+        - spaces
   /money/expenses:
     get:
       summary: List expenses
@@ -106,6 +112,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SpaceCreateRequest'
+      tags:
+        - money
   '/money/expenses/{expense}':
     parameters:
       - schema:
@@ -115,7 +123,8 @@ paths:
         required: true
     get:
       summary: Get an expense
-      tags: []
+      tags:
+        - money
       responses:
         '200':
           description: OK
@@ -130,6 +139,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - money
     patch:
       summary: Update an expense
       operationId: patch-money-expenses
@@ -166,6 +177,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserCreateRequest'
+      tags:
+        - users
   '/users/{user}':
     parameters:
       - schema:
@@ -175,7 +188,8 @@ paths:
         required: true
     get:
       summary: Get a user
-      tags: []
+      tags:
+        - users
       responses:
         '200':
           description: OK
@@ -201,12 +215,12 @@ paths:
         required: true
     get:
       summary: List space users
-      tags:
-        - users
       operationId: get-spaces-id-users
       responses:
         '200':
           description: OK
+      tags:
+        - spaces
   '/spaces/{space}/users/{user}':
     parameters:
       - schema:
@@ -234,6 +248,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - spaces
   /categories:
     get:
       summary: Your GET endpoint
