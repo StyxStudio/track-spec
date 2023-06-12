@@ -150,10 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  list:
-                    $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserListResponse'
     post:
       summary: ''
       operationId: post-users
