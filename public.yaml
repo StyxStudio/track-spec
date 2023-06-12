@@ -433,13 +433,14 @@ components:
           required:
             - list
     Category:
-      title: Category
       allOf:
         - type: object
+          properties:
+            avatar:
+              type: string
         - $ref: '#/components/schemas/AuditModel'
         - $ref: '#/components/schemas/ResourceModel'
         - $ref: '#/components/schemas/CategoryCreateRequest'
-      description: ''
     CategoryCreateRequest:
       title: CategoryCreateRequest
       type: object
