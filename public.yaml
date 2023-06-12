@@ -379,7 +379,6 @@ components:
         id:
           type: string
     SpaceListResponse:
-      title: SpaceListResponse
       allOf:
         - $ref: '#/components/schemas/ListModel'
         - type: object
@@ -388,6 +387,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Space'
+          required:
+            - list
     User:
       title: User
       x-tags:
@@ -421,7 +422,6 @@ components:
         sub:
           type: string
     UserListResponse:
-      title: UserListResponse
       allOf:
         - $ref: '#/components/schemas/ListModel'
         - type: object
@@ -430,8 +430,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/User'
-      x-stoplight:
-        id: 35c6f404b9171
+          required:
+            - list
     Category:
       title: Category
       allOf:
@@ -449,7 +449,6 @@ components:
         id:
           type: string
     CategoryListResponse:
-      title: SpaceListResponse
       allOf:
         - $ref: '#/components/schemas/ListModel'
         - type: object
@@ -458,6 +457,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Category'
+          required:
+            - list
   parameters: {}
   securitySchemes:
     token:
