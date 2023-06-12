@@ -12,7 +12,8 @@ paths:
   /spaces:
     get:
       summary: List spaces
-      tags: []
+      tags:
+        - spaces
       responses:
         '200':
           description: OK
@@ -50,7 +51,8 @@ paths:
         required: true
     get:
       summary: Get a space
-      tags: []
+      tags:
+        - spaces
       responses:
         '200':
           description: OK
@@ -134,10 +136,13 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - money
   /users:
     get:
       summary: List users
-      tags: []
+      tags:
+        - users
       operationId: get-users
       responses:
         '200':
@@ -188,6 +193,8 @@ paths:
       responses:
         '200':
           description: OK
+      tags:
+        - users
   '/spaces/{space}/users':
     parameters:
       - schema:
@@ -197,7 +204,8 @@ paths:
         required: true
     get:
       summary: List space users
-      tags: []
+      tags:
+        - users
       operationId: get-spaces-id-users
       responses:
         '200':
@@ -221,9 +229,41 @@ paths:
         '200':
           description: OK
       description: ''
+      tags:
+        - spaces
     delete:
       summary: Remove a space collaborator
       operationId: delete-spaces-id-users-id
+      responses:
+        '200':
+          description: OK
+  /categories:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-categories
+    post:
+      summary: ''
+      operationId: post-categories
+      responses:
+        '200':
+          description: OK
+  '/categories/{category}':
+    parameters:
+      - schema:
+          type: string
+        name: category
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-categories-category
+    patch:
+      summary: ''
+      operationId: patch-categories-category
       responses:
         '200':
           description: OK
@@ -376,6 +416,7 @@ components:
       scheme: bearer
 tags:
   - name: money
+  - name: spaces
   - name: users
 security:
   - token: []
