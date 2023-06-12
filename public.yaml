@@ -1,0 +1,381 @@
+openapi: 3.0.0
+info:
+  title: Track Pubic Api
+  version: 1.0.0
+  contact:
+    name: Chargebee
+  description: ''
+servers:
+  - description: local
+    url: 'http://localhost:8080'
+paths:
+  /spaces:
+    get:
+      summary: List spaces
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpaceListResponse'
+      operationId: get-spaces
+      description: ''
+      parameters: []
+      x-spring-paginated: true
+    parameters: []
+    post:
+      summary: Create a space
+      operationId: post-spaces
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpaceCreateRequest'
+  '/spaces/{space}':
+    parameters:
+      - schema:
+          type: string
+        name: space
+        in: path
+        required: true
+    get:
+      summary: Get a space
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Space'
+      operationId: get-spaces-id
+    delete:
+      summary: Remove a project
+      operationId: delete-spaces-space
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: Update a space
+      operationId: patch-spaces-space
+      responses:
+        '200':
+          description: OK
+  /money/expenses:
+    get:
+      summary: List expenses
+      tags:
+        - money
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseListResponse'
+      operationId: get-money-expenses
+      description: ''
+      parameters: []
+      x-spring-paginated: true
+    parameters: []
+    post:
+      summary: Create a space
+      operationId: post-money-expenses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpaceCreateRequest'
+  '/money/expenses/{expense}':
+    parameters:
+      - schema:
+          type: string
+        name: expense
+        in: path
+        required: true
+    get:
+      summary: Get an expense
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+      operationId: get-money-expenses-id
+    delete:
+      summary: Remove an expense
+      operationId: delete-money-expenses
+      responses:
+        '200':
+          description: OK
+    patch:
+      summary: Update an expense
+      operationId: patch-money-expenses
+      responses:
+        '200':
+          description: OK
+  /users:
+    get:
+      summary: List users
+      tags: []
+      operationId: get-users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list:
+                    $ref: '#/components/schemas/User'
+    post:
+      summary: ''
+      operationId: post-users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+  '/users/{user}':
+    parameters:
+      - schema:
+          type: string
+        name: user
+        in: path
+        required: true
+    get:
+      summary: Get a user
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      operationId: get-users-id
+    patch:
+      summary: Update a space
+      operationId: patch-users-user
+      responses:
+        '200':
+          description: OK
+  '/spaces/{space}/users':
+    parameters:
+      - schema:
+          type: string
+        name: space
+        in: path
+        required: true
+    get:
+      summary: List space users
+      tags: []
+      operationId: get-spaces-id-users
+      responses:
+        '200':
+          description: OK
+  '/spaces/{space}/users/{user}':
+    parameters:
+      - schema:
+          type: string
+        name: space
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: user
+        in: path
+        required: true
+    put:
+      summary: Add a space user
+      operationId: put-spaces-id-users-id
+      responses:
+        '200':
+          description: OK
+      description: ''
+    delete:
+      summary: Remove a space collaborator
+      operationId: delete-spaces-id-users-id
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    AuditModel:
+      title: AuditModel
+      type: object
+      properties:
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        created_by:
+          type: string
+    ResourceModel:
+      title: ResourceModel
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    ListModel:
+      title: ListModel
+      type: object
+      properties:
+        size:
+          type: string
+        has_more:
+          type: boolean
+        total:
+          type: string
+    Space:
+      title: Space
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/SpaceCreateRequest'
+      description: ''
+      x-stoplight:
+        id: 023e9578bec3c
+    Expense:
+      title: Expense
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/SpaceCreateRequest'
+      description: ''
+      x-stoplight:
+        id: bfb884aaef56c
+    User:
+      title: User
+      x-tags:
+        - users
+      allOf:
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - type: object
+          properties:
+            verified:
+              type: boolean
+            blocked:
+              type: boolean
+        - $ref: '#/components/schemas/UserCreateRequest'
+    Task:
+      allOf:
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/TaskListCreateRequest'
+    SpaceListResponse:
+      title: SpaceListResponse
+      allOf:
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Space'
+      x-stoplight:
+        id: db5d3f1b0ccbe
+    ExpenseListResponse:
+      title: ExpenseListResponse
+      allOf:
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Expense'
+      x-stoplight:
+        id: 10583f3381fe9
+    SpaceCreateRequest:
+      title: SpaceCreateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+    UserCreateRequest:
+      title: UserCreateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        middle_name:
+          type: string
+        image:
+          type: string
+        email:
+          type: string
+        sub:
+          type: string
+    TaskList:
+      title: TaskList
+      allOf:
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+    TaskListCreateRequest:
+      title: TaskListCreateRequest
+      type: object
+      properties:
+        title:
+          type: string
+    TaskListListResponse:
+      allOf:
+        - $ref: '#/components/schemas/ListModel'
+        - type: array
+          items:
+            $ref: '#/components/schemas/TaskList'
+    TaskCreateRequest:
+      title: TaskCreateRequest
+      type: object
+      properties:
+        title:
+          type: string
+  parameters: {}
+  securitySchemes:
+    token:
+      type: http
+      scheme: bearer
+tags:
+  - name: money
+  - name: users
+security:
+  - token: []
