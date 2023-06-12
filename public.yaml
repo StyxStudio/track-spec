@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  title: Track Pubic Api
-  version: 1.0.0
+  title: Track Public Api
+  version: 1.0.1
   contact:
     name: Chargebee
-  description: ""
+  description: ''
 servers:
   - description: local
-    url: "http://localhost:8080"
+    url: 'http://localhost:8080'
 paths:
   /spaces:
     get:
@@ -15,14 +15,14 @@ paths:
       tags:
         - spaces
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SpaceListResponse"
+                $ref: '#/components/schemas/SpaceListResponse'
       operationId: get-spaces
-      description: ""
+      description: ''
       parameters: []
       x-spring-paginated: true
     parameters: []
@@ -30,19 +30,19 @@ paths:
       summary: Create a space
       operationId: post-spaces
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Space"
+                $ref: '#/components/schemas/Space'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SpaceCreateRequest"
-  "/spaces/{space}":
+              $ref: '#/components/schemas/SpaceCreateRequest'
+  '/spaces/{space}':
     parameters:
       - schema:
           type: string
@@ -54,59 +54,59 @@ paths:
       tags:
         - spaces
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Space"
+                $ref: '#/components/schemas/Space'
       operationId: get-spaces-id
     delete:
       summary: Remove a project
       operationId: delete-spaces-space
       responses:
-        "200":
+        '200':
           description: OK
     patch:
       summary: Update a space
       operationId: patch-spaces-space
       responses:
-        "200":
+        '200':
           description: OK
   /money/expenses:
     get:
       summary: List expenses
       tags:
         - money
+      operationId: get-money-expenses
+      description: ''
+      parameters: []
+      x-spring-paginated: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExpenseListResponse"
-      operationId: get-money-expenses
-      description: ""
-      parameters: []
-      x-spring-paginated: true
+                $ref: '#/components/schemas/Expense'
     parameters: []
     post:
       summary: Create a space
       operationId: post-money-expenses
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Expense"
+                $ref: '#/components/schemas/Expense'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SpaceCreateRequest"
-  "/money/expenses/{expense}":
+              $ref: '#/components/schemas/SpaceCreateRequest'
+  '/money/expenses/{expense}':
     parameters:
       - schema:
           type: string
@@ -117,24 +117,24 @@ paths:
       summary: Get an expense
       tags: []
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Expense"
+                $ref: '#/components/schemas/Expense'
       operationId: get-money-expenses-id
     delete:
       summary: Remove an expense
       operationId: delete-money-expenses
       responses:
-        "200":
+        '200':
           description: OK
     patch:
       summary: Update an expense
       operationId: patch-money-expenses
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - money
@@ -145,7 +145,7 @@ paths:
         - users
       operationId: get-users
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
@@ -153,23 +153,23 @@ paths:
                 type: object
                 properties:
                   list:
-                    $ref: "#/components/schemas/User"
+                    $ref: '#/components/schemas/User'
     post:
-      summary: ""
+      summary: ''
       operationId: post-users
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: '#/components/schemas/User'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserCreateRequest"
-  "/users/{user}":
+              $ref: '#/components/schemas/UserCreateRequest'
+  '/users/{user}':
     parameters:
       - schema:
           type: string
@@ -180,18 +180,18 @@ paths:
       summary: Get a user
       tags: []
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: '#/components/schemas/User'
       operationId: get-users-id
     patch:
       summary: Update a space
       operationId: patch-users-user
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - users
@@ -208,9 +208,9 @@ paths:
         - users
       operationId: get-spaces-id-users
       responses:
-        "200":
+        '200':
           description: OK
-  "/spaces/{space}/users/{user}":
+  '/spaces/{space}/users/{user}':
     parameters:
       - schema:
           type: string
@@ -226,7 +226,7 @@ paths:
       summary: Add a space user
       operationId: put-spaces-id-users-id
       responses:
-        "200":
+        '200':
           description: OK
       description: ''
       tags:
@@ -235,13 +235,20 @@ paths:
       summary: Remove a space collaborator
       operationId: delete-spaces-id-users-id
       responses:
-        "200":
+        '200':
           description: OK
   /categories:
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      tags:
+        - categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryListResponse'
       operationId: get-categories
     post:
       summary: ''
@@ -249,6 +256,17 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryCreateRequest'
+      tags:
+        - categories
   '/categories/{category}':
     parameters:
       - schema:
@@ -258,8 +276,15 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: []
-      responses: {}
+      tags:
+        - categories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
       operationId: get-categories-category
     patch:
       summary: ''
@@ -267,6 +292,12 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+      tags:
+        - categories
 components:
   schemas:
     AuditModel:
@@ -297,69 +328,24 @@ components:
           type: boolean
         total:
           type: string
-    Space:
-      title: Space
-      allOf:
-        - type: object
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-        - $ref: "#/components/schemas/SpaceCreateRequest"
-      description: ""
-      x-stoplight:
-        id: 023e9578bec3c
     Expense:
       title: Expense
       allOf:
         - type: object
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-        - $ref: "#/components/schemas/SpaceCreateRequest"
-      description: ""
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/SpaceCreateRequest'
+      description: ''
       x-stoplight:
         id: bfb884aaef56c
-    User:
-      title: User
-      x-tags:
-        - users
+    Space:
+      title: Space
       allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
         - type: object
-          properties:
-            verified:
-              type: boolean
-            blocked:
-              type: boolean
-        - $ref: "#/components/schemas/UserCreateRequest"
-    Task:
-      allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-        - $ref: "#/components/schemas/TaskListCreateRequest"
-    SpaceListResponse:
-      title: SpaceListResponse
-      allOf:
-        - $ref: "#/components/schemas/ListModel"
-        - type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: "#/components/schemas/Space"
-      x-stoplight:
-        id: db5d3f1b0ccbe
-    ExpenseListResponse:
-      title: ExpenseListResponse
-      allOf:
-        - $ref: "#/components/schemas/ListModel"
-        - type: object
-          properties:
-            list:
-              type: array
-              items:
-                $ref: "#/components/schemas/Expense"
-      x-stoplight:
-        id: 10583f3381fe9
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/SpaceCreateRequest'
+      description: ''
     SpaceCreateRequest:
       title: SpaceCreateRequest
       type: object
@@ -368,6 +354,30 @@ components:
           type: string
         id:
           type: string
+    SpaceListResponse:
+      title: SpaceListResponse
+      allOf:
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Space'
+    User:
+      title: User
+      x-tags:
+        - users
+      allOf:
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - type: object
+          properties:
+            verified:
+              type: boolean
+            blocked:
+              type: boolean
+        - $ref: '#/components/schemas/UserCreateRequest'
     UserCreateRequest:
       title: UserCreateRequest
       type: object
@@ -386,35 +396,51 @@ components:
           type: string
         sub:
           type: string
-    TaskList:
-      title: TaskList
+    UserListResponse:
+      title: UserListResponse
       allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-    TaskListCreateRequest:
-      title: TaskListCreateRequest
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+      x-stoplight:
+        id: 35c6f404b9171
+    Category:
+      title: Category
+      allOf:
+        - type: object
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/CategoryCreateRequest'
+      description: ''
+    CategoryCreateRequest:
+      title: CategoryCreateRequest
       type: object
       properties:
-        title:
+        name:
           type: string
-    TaskListListResponse:
+        id:
+          type: string
+    CategoryListResponse:
+      title: SpaceListResponse
       allOf:
-        - $ref: "#/components/schemas/ListModel"
-        - type: array
-          items:
-            $ref: "#/components/schemas/TaskList"
-    TaskCreateRequest:
-      title: TaskCreateRequest
-      type: object
-      properties:
-        title:
-          type: string
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Category'
   parameters: {}
   securitySchemes:
     token:
       type: http
       scheme: bearer
 tags:
+  - name: categories
   - name: money
   - name: spaces
   - name: users
