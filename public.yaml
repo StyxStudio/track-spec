@@ -323,6 +323,10 @@ components:
           type: string
         created_by:
           type: string
+      required:
+        - created_at
+        - updated_at
+        - created_by
     ResourceModel:
       title: ResourceModel
       type: object
@@ -331,6 +335,9 @@ components:
           type: string
         name:
           type: string
+      required:
+        - id
+        - name
     ListModel:
       title: ListModel
       type: object
@@ -341,6 +348,10 @@ components:
           type: boolean
         total:
           type: string
+      required:
+        - size
+        - has_more
+        - total
     Expense:
       title: Expense
       allOf:
