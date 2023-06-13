@@ -330,6 +330,14 @@ components:
         display_text:
           type: string
           readOnly: true
+    Location:
+      title: Location
+      type: object
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
     AuditModel:
       title: AuditModel
       type: object
@@ -458,11 +466,15 @@ components:
           $ref: '#/components/schemas/Money'
         name:
           type: string
-        categoryId:
+        category_id:
           type: string
-        currencyCode:
+        currency_code:
           type: string
         description:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        payment_source_id:
           type: string
     ExpenseListResponse:
       allOf:
