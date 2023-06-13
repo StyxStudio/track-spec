@@ -87,7 +87,13 @@ paths:
         - money
       operationId: get-money-expenses
       description: ''
-      parameters: []
+      parameters:
+        - name: search
+          in: query
+          description: The search parameters for filtering, pagination, and sorting
+          required: false
+          schema:
+            $ref: '#/components/schemas/Search'
       x-spring-paginated: true
       responses:
         '200':
@@ -334,6 +340,31 @@ paths:
         - categories
 components:
   schemas:
+    Filters:
+      type: object
+      properties:
+        query:
+          type: string
+        categories:
+          type: array
+          items:
+            type: string
+    Search:
+      type: object
+      properties:
+        filters:
+          $ref: '#/components/schemas/Filters'
+        page:
+          type: integer
+        rowsPerPage:
+          type: integer
+        sortBy:
+          type: string
+        sortDir:
+          type: string
+          enum:
+            - asc
+            - desc
     Money:
       title: Money
       type: object
