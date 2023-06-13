@@ -329,6 +329,7 @@ components:
           type: number
         display_text:
           type: string
+          readOnly: true
     AuditModel:
       title: AuditModel
       type: object
@@ -439,9 +440,6 @@ components:
           required:
             - list
     Expense:
-      title: Expense
-      x-tags:
-        - money
       allOf:
         - $ref: '#/components/schemas/AuditModel'
         - $ref: '#/components/schemas/ResourceModel'
@@ -457,8 +455,15 @@ components:
       type: object
       properties:
         amount:
+          $ref: '#/components/schemas/Money'
+        name:
           type: string
-          writeOnly: true
+        categoryId:
+          type: string
+        currencyCode:
+          type: string
+        description:
+          type: string
     ExpenseListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
