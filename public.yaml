@@ -90,7 +90,7 @@ paths:
       parameters:
         - name: search
           in: query
-          description: The search parameters for filtering, pagination, and sorting
+          description: 'The search parameters for filtering, pagination, and sorting'
           required: false
           schema:
             $ref: '#/components/schemas/Search'
@@ -522,6 +522,8 @@ components:
           $ref: '#/components/schemas/Location'
         payment_source_id:
           type: string
+      required:
+        - amount
     ExpenseListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
