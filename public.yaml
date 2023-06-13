@@ -146,10 +146,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Expense'
-      operationId: get-money-expenses-id
+      operationId: get-money-expenses-expense
     delete:
       summary: Remove an expense
-      operationId: delete-money-expenses
+      operationId: delete-money-expenses-expense
       responses:
         '200':
           description: OK
@@ -157,7 +157,7 @@ paths:
         - money
     patch:
       summary: Update an expense
-      operationId: patch-money-expenses
+      operationId: patch-money-expenses-expense
       responses:
         '200':
           description: OK
