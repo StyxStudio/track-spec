@@ -319,6 +319,16 @@ paths:
         - categories
 components:
   schemas:
+    Money:
+      title: Money
+      type: object
+      properties:
+        currency:
+          type: string
+        value:
+          type: number
+        display_text:
+          type: string
     AuditModel:
       title: AuditModel
       type: object
@@ -446,20 +456,9 @@ components:
       title: ExpenseCreateRequest
       type: object
       properties:
-        name:
+        amount:
           type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        middle_name:
-          type: string
-        image:
-          type: string
-        email:
-          type: string
-        sub:
-          type: string
+          writeOnly: true
     ExpenseListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
