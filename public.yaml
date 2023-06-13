@@ -3,7 +3,8 @@ info:
   title: Track Public Api
   version: 1.0.1
   contact:
-    name: Chargebee
+    name: Styx Studio
+    email: mail@styx.studio
   description: ''
 servers:
   - description: local
@@ -252,7 +253,7 @@ paths:
         - spaces
   /categories:
     get:
-      summary: Your GET endpoint
+      summary: List categories
       tags:
         - categories
       responses:
@@ -264,7 +265,7 @@ paths:
                 $ref: '#/components/schemas/CategoryListResponse'
       operationId: get-categories
     post:
-      summary: ''
+      summary: Create a category
       operationId: post-categories
       responses:
         '200':
@@ -288,7 +289,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Retrieve a category
       tags:
         - categories
       responses:
@@ -300,7 +301,7 @@ paths:
                 $ref: '#/components/schemas/Category'
       operationId: get-categories-category
     patch:
-      summary: ''
+      summary: Update a category
       operationId: patch-categories-category
       responses:
         '200':
@@ -434,10 +435,6 @@ components:
             - list
     Category:
       allOf:
-        - type: object
-          properties:
-            avatar:
-              type: string
         - $ref: '#/components/schemas/AuditModel'
         - $ref: '#/components/schemas/ResourceModel'
         - $ref: '#/components/schemas/CategoryCreateRequest'
@@ -448,6 +445,8 @@ components:
         name:
           type: string
         id:
+          type: string
+        avatar:
           type: string
     CategoryListResponse:
       allOf:
