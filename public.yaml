@@ -95,7 +95,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Expense'
+                $ref: '#/components/schemas/ExpenseListResponse'
     parameters: []
     post:
       summary: Create a space
@@ -112,7 +112,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SpaceCreateRequest'
+              $ref: '#/components/schemas/ExpenseCreateRequest'
       tags:
         - money
   '/money/expenses/{expense}':
@@ -148,6 +148,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
       tags:
         - money
   /users:
@@ -354,16 +358,6 @@ components:
         - size
         - has_more
         - total
-    Expense:
-      title: Expense
-      allOf:
-        - type: object
-        - $ref: '#/components/schemas/AuditModel'
-        - $ref: '#/components/schemas/ResourceModel'
-        - $ref: '#/components/schemas/SpaceCreateRequest'
-      description: ''
-      x-stoplight:
-        id: bfb884aaef56c
     Space:
       title: Space
       allOf:
@@ -432,6 +426,49 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/User'
+          required:
+            - list
+    Expense:
+      title: Expense
+      x-tags:
+        - money
+      allOf:
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - type: object
+          properties:
+            verified:
+              type: boolean
+            blocked:
+              type: boolean
+        - $ref: '#/components/schemas/ExpenseCreateRequest'
+    ExpenseCreateRequest:
+      title: ExpenseCreateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        middle_name:
+          type: string
+        image:
+          type: string
+        email:
+          type: string
+        sub:
+          type: string
+    ExpenseListResponse:
+      allOf:
+        - $ref: '#/components/schemas/ListModel'
+        - type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Expense'
           required:
             - list
     Category:
