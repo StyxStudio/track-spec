@@ -8,7 +8,7 @@ info:
   description: ''
 servers:
   - description: local
-    url: 'http://localhost:8080'
+    url: 'http://localhost:8081'
 paths:
   /spaces:
     get:
