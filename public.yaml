@@ -115,6 +115,19 @@ paths:
               $ref: '#/components/schemas/ExpenseCreateRequest'
       tags:
         - money
+    delete:
+      summary: Delete expenses
+      operationId: delete-money-expenses
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
   '/money/expenses/{expense}':
     parameters:
       - schema:
