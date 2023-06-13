@@ -264,6 +264,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CategoryListResponse'
       operationId: get-categories
+      x-spring-paginated: true
     post:
       summary: Create a category
       operationId: post-categories
