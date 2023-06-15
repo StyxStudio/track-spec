@@ -5,10 +5,10 @@ info:
   contact:
     name: Styx Studio
     email: mail@styx.studio
-  description: ""
+  description: 'Apis for interacting with the track application'
 servers:
   - description: local
-    url: "http://localhost:8081"
+    url: 'http://localhost:8081'
 paths:
   /spaces:
     get:
@@ -16,40 +16,40 @@ paths:
       tags:
         - spaces
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SpaceListResponse"
-      operationId: get-spaces
-      description: ""
+                $ref: '#/components/schemas/SpaceListResponse'
+      operationId: list-spaces
+      description: ''
       parameters: []
       x-spring-paginated: true
     parameters: []
     post:
       summary: Create a space
-      operationId: post-spaces
+      operationId: create-a-space
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Space"
+                $ref: '#/components/schemas/Space'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SpaceCreateRequest"
+              $ref: '#/components/schemas/SpaceCreateRequest'
       tags:
         - spaces
-  "/spaces/{space}":
+  '/spaces/{space-id}':
     parameters:
       - schema:
           type: string
-        name: space
+        name: space-id
         in: path
         required: true
     get:
@@ -57,26 +57,26 @@ paths:
       tags:
         - spaces
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Space"
-      operationId: get-spaces-id
+                $ref: '#/components/schemas/Space'
+      operationId: get-space-by-id
     delete:
       summary: Remove a project
-      operationId: delete-spaces-space
+      operationId: delete-space-by-id
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - spaces
     patch:
       summary: Update a space
-      operationId: patch-spaces-space
+      operationId: update-space-by-id
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - spaces
@@ -85,62 +85,47 @@ paths:
       summary: List expenses
       tags:
         - money
-      operationId: get-money-expenses
-      description: ""
+      operationId: list-expenses
+      description: ''
       parameters:
         - name: search
           in: query
-          description: "The search parameters for filtering, pagination, and sorting"
+          description: 'The search parameters for filtering, pagination, and sorting'
           required: false
           schema:
-            $ref: "#/components/schemas/Search"
+            $ref: '#/components/schemas/Search'
       x-spring-paginated: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExpenseListResponse"
+                $ref: '#/components/schemas/ExpenseListResponse'
     parameters: []
     post:
       summary: Create a space
-      operationId: post-money-expenses
+      operationId: create-an-expense
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Expense"
+                $ref: '#/components/schemas/Expense'
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ExpenseCreateRequest"
+              $ref: '#/components/schemas/ExpenseCreateRequest'
       tags:
         - money
-    delete:
-      summary: Delete expenses
-      operationId: delete-money-expenses
-      responses:
-        "200":
-          description: OK
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                type: string
-      tags:
-        - money
-  "/money/expenses/{expense}":
+  '/money/expenses/{expense-id}':
     parameters:
       - schema:
           type: string
-        name: expense
+        name: expense-id
         in: path
         required: true
     get:
@@ -148,31 +133,32 @@ paths:
       tags:
         - money
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Expense"
-      operationId: get-money-expenses-expense
+                $ref: '#/components/schemas/Expense'
+      operationId: get-expense-by-id
     delete:
       summary: Remove an expense
-      operationId: delete-money-expenses-expense
+      operationId: delete-expense-by-id
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - money
+      description: ''
     patch:
       summary: Update an expense
-      operationId: patch-money-expenses-expense
+      operationId: update-expense-by-id
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Expense"
+                $ref: '#/components/schemas/Expense'
       tags:
         - money
   /users:
@@ -180,36 +166,36 @@ paths:
       summary: List users
       tags:
         - users
-      operationId: get-users
+      operationId: list-users
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserListResponse"
+                $ref: '#/components/schemas/UserListResponse'
     post:
-      summary: ""
-      operationId: post-users
+      summary: ''
+      operationId: create-an-user
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
+                $ref: '#/components/schemas/User'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserCreateRequest"
+              $ref: '#/components/schemas/UserCreateRequest'
       tags:
         - users
-  "/users/{user}":
+  '/users/{user-id}':
     parameters:
       - schema:
           type: string
-        name: user
+        name: user-id
         in: path
         required: true
     get:
@@ -217,101 +203,73 @@ paths:
       tags:
         - users
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/User"
-      operationId: get-users-id
+                $ref: '#/components/schemas/User'
+      operationId: get-user-by-id
     patch:
       summary: Update a space
-      operationId: patch-users-user
+      operationId: update-user-by-id
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - users
-  "/spaces/{space}/users":
+  '/spaces/{space-id}/users':
     parameters:
       - schema:
           type: string
-        name: space
+        name: space-id
         in: path
         required: true
     get:
       summary: List space users
-      operationId: get-spaces-id-users
+      operationId: get-users-by-space-id
       responses:
-        "200":
+        '200':
           description: OK
       tags:
         - spaces
-  "/spaces/{space}/users/{user}":
-    parameters:
-      - schema:
-          type: string
-        name: space
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: user
-        in: path
-        required: true
-    put:
-      summary: Add a space user
-      operationId: put-spaces-id-users-id
-      responses:
-        "200":
-          description: OK
-      description: ""
-      tags:
-        - spaces
-    delete:
-      summary: Remove a space collaborator
-      operationId: delete-spaces-id-users-id
-      responses:
-        "200":
-          description: OK
-      tags:
-        - spaces
+      description: ''
   /categories:
     get:
       summary: List categories
       tags:
         - categories
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CategoryListResponse"
-      operationId: get-categories
+                $ref: '#/components/schemas/CategoryListResponse'
+      operationId: list-categories
       x-spring-paginated: true
     post:
       summary: Create a category
-      operationId: post-categories
+      operationId: create-a-category
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Category"
+                $ref: '#/components/schemas/Category'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CategoryCreateRequest"
+              $ref: '#/components/schemas/CategoryCreateRequest'
       tags:
         - categories
-  "/categories/{category}":
+  '/categories/{category-id}':
     parameters:
       - schema:
           type: string
-        name: category
+        name: category-id
         in: path
         required: true
     get:
@@ -319,23 +277,23 @@ paths:
       tags:
         - categories
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Category"
-      operationId: get-categories-category
+                $ref: '#/components/schemas/Category'
+      operationId: get-category-by-id
     patch:
       summary: Update a category
-      operationId: patch-categories-category
+      operationId: update-category-by-id
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Category"
+                $ref: '#/components/schemas/Category'
       tags:
         - categories
 components:
@@ -353,7 +311,7 @@ components:
       type: object
       properties:
         filters:
-          $ref: "#/components/schemas/Filters"
+          $ref: '#/components/schemas/Filters'
         page:
           type: integer
         rowsPerPage:
@@ -427,10 +385,10 @@ components:
       title: Space
       allOf:
         - type: object
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-        - $ref: "#/components/schemas/SpaceCreateRequest"
-      description: ""
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/SpaceCreateRequest'
+      description: ''
     SpaceCreateRequest:
       title: SpaceCreateRequest
       type: object
@@ -441,13 +399,13 @@ components:
           type: string
     SpaceListResponse:
       allOf:
-        - $ref: "#/components/schemas/ListModel"
+        - $ref: '#/components/schemas/ListModel'
         - type: object
           properties:
             list:
               type: array
               items:
-                $ref: "#/components/schemas/Space"
+                $ref: '#/components/schemas/Space'
           required:
             - list
     User:
@@ -455,15 +413,15 @@ components:
       x-tags:
         - users
       allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
         - type: object
           properties:
             verified:
               type: boolean
             blocked:
               type: boolean
-        - $ref: "#/components/schemas/UserCreateRequest"
+        - $ref: '#/components/schemas/UserCreateRequest'
     UserCreateRequest:
       title: UserCreateRequest
       type: object
@@ -484,32 +442,32 @@ components:
           type: string
     UserListResponse:
       allOf:
-        - $ref: "#/components/schemas/ListModel"
+        - $ref: '#/components/schemas/ListModel'
         - type: object
           properties:
             list:
               type: array
               items:
-                $ref: "#/components/schemas/User"
+                $ref: '#/components/schemas/User'
           required:
             - list
     Expense:
       allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
         - type: object
           properties:
             verified:
               type: boolean
             blocked:
               type: boolean
-        - $ref: "#/components/schemas/ExpenseCreateRequest"
+        - $ref: '#/components/schemas/ExpenseCreateRequest'
     ExpenseCreateRequest:
       title: ExpenseCreateRequest
       type: object
       properties:
         amount:
-          $ref: "#/components/schemas/Money"
+          $ref: '#/components/schemas/Money'
         name:
           type: string
         category_id:
@@ -519,27 +477,27 @@ components:
         description:
           type: string
         location:
-          $ref: "#/components/schemas/Location"
+          $ref: '#/components/schemas/Location'
         payment_source_id:
           type: string
       required:
         - amount
     ExpenseListResponse:
       allOf:
-        - $ref: "#/components/schemas/ListModel"
+        - $ref: '#/components/schemas/ListModel'
         - type: object
           properties:
             list:
               type: array
               items:
-                $ref: "#/components/schemas/Expense"
+                $ref: '#/components/schemas/Expense'
           required:
             - list
     Category:
       allOf:
-        - $ref: "#/components/schemas/AuditModel"
-        - $ref: "#/components/schemas/ResourceModel"
-        - $ref: "#/components/schemas/CategoryCreateRequest"
+        - $ref: '#/components/schemas/AuditModel'
+        - $ref: '#/components/schemas/ResourceModel'
+        - $ref: '#/components/schemas/CategoryCreateRequest'
     CategoryCreateRequest:
       title: CategoryCreateRequest
       type: object
@@ -552,13 +510,13 @@ components:
           type: string
     CategoryListResponse:
       allOf:
-        - $ref: "#/components/schemas/ListModel"
+        - $ref: '#/components/schemas/ListModel'
         - type: object
           properties:
             list:
               type: array
               items:
-                $ref: "#/components/schemas/Category"
+                $ref: '#/components/schemas/Category'
           required:
             - list
   parameters: {}
