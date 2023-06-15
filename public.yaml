@@ -24,7 +24,13 @@ paths:
                 $ref: '#/components/schemas/SpaceListResponse'
       operationId: list-spaces
       description: ''
-      parameters: []
+      parameters:
+        - name: search
+          in: query
+          description: 'The search parameters for filtering, pagination, and sorting'
+          required: false
+          schema:
+            $ref: '#/components/schemas/Search'
       x-spring-paginated: true
     parameters: []
     post:
@@ -181,6 +187,14 @@ paths:
       tags:
         - users
       operationId: list-users
+      parameters:
+        - name: search
+          in: query
+          description: 'The search parameters for filtering, pagination, and sorting'
+          required: false
+          schema:
+            $ref: '#/components/schemas/Search'
+      x-spring-paginated: true
       responses:
         '200':
           description: OK
@@ -252,6 +266,14 @@ paths:
     get:
       summary: List space users
       operationId: get-users-by-space-id
+      parameters:
+        - name: search
+          in: query
+          description: 'The search parameters for filtering, pagination, and sorting'
+          required: false
+          schema:
+            $ref: '#/components/schemas/Search'
+      x-spring-paginated: true
       responses:
         '200':
           description: OK
@@ -271,6 +293,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/CategoryListResponse'
       operationId: list-categories
+      parameters:
+        - name: search
+          in: query
+          description: 'The search parameters for filtering, pagination, and sorting'
+          required: false
+          schema:
+            $ref: '#/components/schemas/Search'
       x-spring-paginated: true
     post:
       summary: Create a category
