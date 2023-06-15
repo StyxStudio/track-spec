@@ -5,7 +5,7 @@ info:
   contact:
     name: Styx Studio
     email: mail@styx.studio
-  description: 'Apis for interacting with the track application'
+  description: Apis for interacting with the track application
 servers:
   - description: local
     url: 'http://localhost:8081'
@@ -80,6 +80,11 @@ paths:
           description: OK
       tags:
         - spaces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpaceUpdateRequest'
   /money/expenses:
     get:
       summary: List expenses
@@ -161,6 +166,11 @@ paths:
                 $ref: '#/components/schemas/Expense'
       tags:
         - money
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseUpdateRequest'
   /users:
     get:
       summary: List users
@@ -218,6 +228,12 @@ paths:
           description: OK
       tags:
         - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+        description: ''
   '/spaces/{space-id}/users':
     parameters:
       - schema:
@@ -296,6 +312,11 @@ paths:
                 $ref: '#/components/schemas/Category'
       tags:
         - categories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryUpdateRequest'
 components:
   schemas:
     Filters:
@@ -397,6 +418,16 @@ components:
           type: string
         id:
           type: string
+    SpaceUpdateRequest:
+      title: SpaceUpdateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+      x-stoplight:
+        id: 3dedc7306dd2d
     SpaceListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
@@ -440,6 +471,26 @@ components:
           type: string
         sub:
           type: string
+    UserUpdateRequest:
+      title: UserUpdateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        middle_name:
+          type: string
+        image:
+          type: string
+        email:
+          type: string
+        sub:
+          type: string
+      x-stoplight:
+        id: 518cda64e676b
     UserListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
@@ -482,6 +533,28 @@ components:
           type: string
       required:
         - amount
+    ExpenseUpdateRequest:
+      title: ExpenseUpdateRequest
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Money'
+        name:
+          type: string
+        category_id:
+          type: string
+        currency_code:
+          type: string
+        description:
+          type: string
+        location:
+          $ref: '#/components/schemas/Location'
+        payment_source_id:
+          type: string
+      required:
+        - amount
+      x-stoplight:
+        id: 72ebd3c0c3ec2
     ExpenseListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
@@ -508,6 +581,18 @@ components:
           type: string
         avatar:
           type: string
+    CategoryUpdateRequest:
+      title: CategoryUpdateRequest
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        avatar:
+          type: string
+      x-stoplight:
+        id: a00d1cc05f5c3
     CategoryListResponse:
       allOf:
         - $ref: '#/components/schemas/ListModel'
