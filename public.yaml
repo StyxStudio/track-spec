@@ -405,11 +405,14 @@ components:
       type: object
       properties:
         created_at:
-          $ref: '#/components/schemas/User'
+          type: string
+          format: date-time
         updated_at:
           type: string
           format: date-time
         created_by:
+          $ref: '#/components/schemas/User'
+        updated_by:
           $ref: '#/components/schemas/User'
       required:
         - created_at
