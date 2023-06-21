@@ -405,11 +405,12 @@ components:
       type: object
       properties:
         created_at:
-          type: string
+          $ref: '#/components/schemas/User'
         updated_at:
           type: string
+          format: date-time
         created_by:
-          type: string
+          $ref: '#/components/schemas/User'
       required:
         - created_at
         - updated_at
@@ -553,6 +554,20 @@ components:
     ExpenseCreateRequest:
       title: ExpenseCreateRequest
       type: object
+      x-examples:
+        Example 1:
+          amount:
+            currency: string
+            value: 0
+            display_text: string
+          name: string
+          category_id: string
+          currency_code: string
+          description: string
+          location:
+            latitude: 0
+            longitude: 0
+          payment_source_id: string
       properties:
         amount:
           $ref: '#/components/schemas/Money'
@@ -570,6 +585,8 @@ components:
           type: string
       required:
         - amount
+        - name
+        - currency_code
     ExpenseUpdateRequest:
       title: ExpenseUpdateRequest
       type: object
