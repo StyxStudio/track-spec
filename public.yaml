@@ -414,10 +414,6 @@ components:
           $ref: '#/components/schemas/User'
         updated_by:
           $ref: '#/components/schemas/User'
-      required:
-        - created_at
-        - updated_at
-        - created_by
     ResourceModel:
       title: ResourceModel
       type: object
